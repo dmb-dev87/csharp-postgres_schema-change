@@ -12,6 +12,18 @@ using System.IO;
 
 namespace PostgreDBSchema
 {
+    public class TableInfo
+    {
+        public string SchemaName { get; set; }
+
+        public string TableName { get; set; }
+
+        public override string ToString()
+        {
+            return "SchemaName: " + SchemaName + "   TableName: " + TableName;
+        }
+    }
+
     public partial class Schema_Form : Form
     {
         private string str_ipaddr;
@@ -132,19 +144,22 @@ namespace PostgreDBSchema
 
         private void processTables()
         {
-            string value = null;
-            List<string> names = new List<string>();
+            string schema_name = null;
+            string table_name = null;
+
+            List<TableInfo> names = new List<TableInfo>();
 
             db_conn.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("SELECT table_name FROM information_schema.tables WHERE table_schema='public'", db_conn);
+            NpgsqlCommand command = new NpgsqlCommand("SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema!='pg_catalog' AND table_schema!='information_schema' AND table_type='BASE TABLE'", db_conn);
             NpgsqlDataReader dr = command.ExecuteReader();
 
             //change table name
             while (dr.Read())
             {
-                value = dr.GetString(0);
-                names.Add(value);
+                schema_name = dr.GetString(0);
+                table_name = dr.GetString(1);
+                names.Add(new TableInfo() { SchemaName = schema_name, TableName = table_name });
             }
 
             db_conn.Close();
@@ -159,23 +174,23 @@ namespace PostgreDBSchema
             return;
         }
 
-        private void processTables(List<string> names)
+        private void processTables(List<TableInfo> names)
         {
             for (int i = 0; i < names.Count; i++)
             {
                 label_status.Text = "Process the table: " + names[i];
 
-                processColumns(names[i]);
+                processColumns(names[i].TableName);
 
                 db_conn.Open();
 
-                string new_name = names[i] + "2020";
+                string new_name = names[i].TableName + "2020";
                 NpgsqlCommand changCmd = new NpgsqlCommand();
                 changCmd.Connection = db_conn;
-                changCmd.CommandText = "ALTER TABLE public." + names[i] + " RENAME TO " + new_name;
+                changCmd.CommandText = "ALTER TABLE " + names[i].SchemaName + "." + names[i].TableName + " RENAME TO " + new_name;
                 changCmd.ExecuteNonQuery();
 
-                sw.WriteLine(str_dbName + ", " + names[i] + " : Change tabel name to " + new_name + ".");
+                sw.WriteLine(str_dbName + ", " + names[i].ToString() + " : Change tabel name to " + new_name + ".");
 
                 db_conn.Close();
             }
