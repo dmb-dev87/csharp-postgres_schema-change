@@ -42,6 +42,9 @@
             this.label_status = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_dbname = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txt_schemaname = new System.Windows.Forms.TextBox();
+            this.cb_allschmas = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +102,7 @@
             this.txt_ipaddr.Location = new System.Drawing.Point(186, 30);
             this.txt_ipaddr.Name = "txt_ipaddr";
             this.txt_ipaddr.Size = new System.Drawing.Size(166, 29);
-            this.txt_ipaddr.TabIndex = 5;
+            this.txt_ipaddr.TabIndex = 1;
             // 
             // txt_portnum
             // 
@@ -107,7 +110,7 @@
             this.txt_portnum.Location = new System.Drawing.Point(186, 72);
             this.txt_portnum.Name = "txt_portnum";
             this.txt_portnum.Size = new System.Drawing.Size(166, 29);
-            this.txt_portnum.TabIndex = 6;
+            this.txt_portnum.TabIndex = 2;
             // 
             // txt_username
             // 
@@ -115,7 +118,7 @@
             this.txt_username.Location = new System.Drawing.Point(186, 114);
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(166, 29);
-            this.txt_username.TabIndex = 7;
+            this.txt_username.TabIndex = 3;
             // 
             // txt_password
             // 
@@ -124,16 +127,16 @@
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(166, 29);
-            this.txt_password.TabIndex = 8;
+            this.txt_password.TabIndex = 4;
             // 
             // btn_start
             // 
             this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_start.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_start.Location = new System.Drawing.Point(230, 301);
+            this.btn_start.Location = new System.Drawing.Point(92, 346);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(122, 30);
-            this.btn_start.TabIndex = 10;
+            this.btn_start.TabIndex = 8;
             this.btn_start.Text = "START";
             this.btn_start.UseVisualStyleBackColor = true;
             this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
@@ -142,10 +145,10 @@
             // 
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_close.Location = new System.Drawing.Point(230, 337);
+            this.btn_close.Location = new System.Drawing.Point(230, 348);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(122, 27);
-            this.btn_close.TabIndex = 13;
+            this.btn_close.TabIndex = 9;
             this.btn_close.Text = "CLOSE";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
@@ -154,7 +157,7 @@
             // 
             this.label_status.AutoSize = true;
             this.label_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_status.Location = new System.Drawing.Point(39, 259);
+            this.label_status.Location = new System.Drawing.Point(39, 301);
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(0, 20);
             this.label_status.TabIndex = 11;
@@ -175,14 +178,48 @@
             this.txt_dbname.Location = new System.Drawing.Point(186, 198);
             this.txt_dbname.Name = "txt_dbname";
             this.txt_dbname.Size = new System.Drawing.Size(166, 29);
-            this.txt_dbname.TabIndex = 9;
+            this.txt_dbname.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(39, 250);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(141, 24);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Schema Name:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // txt_schemaname
+            // 
+            this.txt_schemaname.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_schemaname.Location = new System.Drawing.Point(186, 247);
+            this.txt_schemaname.Name = "txt_schemaname";
+            this.txt_schemaname.Size = new System.Drawing.Size(166, 29);
+            this.txt_schemaname.TabIndex = 6;
+            // 
+            // cb_allschmas
+            // 
+            this.cb_allschmas.AutoSize = true;
+            this.cb_allschmas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_allschmas.Location = new System.Drawing.Point(218, 297);
+            this.cb_allschmas.Name = "cb_allschmas";
+            this.cb_allschmas.Size = new System.Drawing.Size(134, 28);
+            this.cb_allschmas.TabIndex = 7;
+            this.cb_allschmas.Text = "All Shcemas";
+            this.cb_allschmas.UseVisualStyleBackColor = true;
+            this.cb_allschmas.CheckedChanged += new System.EventHandler(this.cb_allschmas_CheckedChanged);
             // 
             // Schema_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(398, 395);
+            this.ClientSize = new System.Drawing.Size(398, 398);
+            this.Controls.Add(this.cb_allschmas);
+            this.Controls.Add(this.txt_schemaname);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txt_dbname);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label_status);
@@ -221,6 +258,9 @@
         private System.Windows.Forms.Label label_status;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_dbname;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txt_schemaname;
+        private System.Windows.Forms.CheckBox cb_allschmas;
     }
 }
 
